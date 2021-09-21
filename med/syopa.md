@@ -21,3 +21,7 @@ Gleasonin luokituksessa otetaan huomioon eturauhassyövän tyyppipiirteet eli he
 3 – Symptomatic, >50% in bed, but not bedbound (Capable of only limited self-care, confined to bed or chair 50% or more of waking hours)
 4 – Bedbound (Completely disabled. Cannot carry on any self-care. Totally confined to bed or chair)
 5 – Death
+
+## DCIS
+Invasive ductal carcinoma (IDC), sometimes called infiltrating ductal carcinoma, is the most common type of breast cancer. About 80% of all breast cancers are invasive ductal carcinomas. Invasive means that the cancer has “invaded” or spread to the surrounding breast tissues.
+![](dcis.jpg)
