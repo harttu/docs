@@ -29,3 +29,6 @@ Invasive ductal carcinoma (IDC), sometimes called infiltrating ductal carcinoma,
 ## Labroista
 ### Ca15-3
 Cancer antigen 15-3 (CA15-3) is a protein made by a variety of cells, particularly breast cancer cells. The protein moves into the blood, where it can be measured.
+
+The reference range of serum CA 15-3 is less than 30 U/mL. (Seemingly U stands for unit) The upper limit of the range varies depending on the laboratory and kit used for the test.
+
