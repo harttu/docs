@@ -25,3 +25,7 @@ Gleasonin luokituksessa otetaan huomioon eturauhassyövän tyyppipiirteet eli he
 ## DCIS
 Invasive ductal carcinoma (IDC), sometimes called infiltrating ductal carcinoma, is the most common type of breast cancer. About 80% of all breast cancers are invasive ductal carcinomas. Invasive means that the cancer has “invaded” or spread to the surrounding breast tissues.
 ![](dcis.jpg)
+
+## Labroista
+### Ca15-3
+Cancer antigen 15-3 (CA15-3) is a protein made by a variety of cells, particularly breast cancer cells. The protein moves into the blood, where it can be measured.
