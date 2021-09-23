@@ -38,6 +38,17 @@ Treatments that specifically target HER2 are very effective. These treatments ar
 
 Certain standard chemotherapy drugs also can be effective in treating HER2-positive breast cancers, although these drugs don't specifically target the HER2 protein.
 
+## HR-positive
+HR is short for hormone receptor. Breast tumors are tested for both estrogen receptors (ER) and progesterone receptors (PR). Each status appears separately on your pathology report.
+
+Approximately 80 percent of breast cancers test positive for ER. About 65 percent of those are also positive for PR.
+
+You can test positive for ER, PR, or both. Either way, it means that hormones fuel your breast cancer. It also means that your treatment can include medications that affect hormones.
+
+It’s also possible to test negative for both hormone receptors. If that’s the case, hormones do not fuel your breast cancer, so hormone therapy wouldn’t be effective.
+
+
+
 ## Labroista
 ### Ca15-3
 Cancer antigen 15-3 (CA15-3) is a protein made by a variety of cells, particularly breast cancer cells. The protein moves into the blood, where it can be measured.
