@@ -3,6 +3,8 @@
 ## Gradus - asteikko
 https://www.suomalaineneturauhassyopa.fi/diagnostiikka/luokittelu/histologinen-luokitus/
 
+Sama kuin erilaistumisaste
+Gradus. Syövän pahanlaatuisuusaste, joka määritetään mikroskooppitutkimuksessa. Kasvaimen erilaistumisastetta käytetään hyväksi, kun päätetään potilaan hoidosta ja arvioidaan hänen ennustettaan.
 WHO:n luokitus sisältää siis sytologisten ominaisuuksien arviointia:
 
 • Gradus 1: hyvin erilaistunut (hyvä ennuste)
