@@ -28,6 +28,16 @@ Gleasonin luokituksessa otetaan huomioon eturauhassyövän tyyppipiirteet eli he
 Invasive ductal carcinoma (IDC), sometimes called infiltrating ductal carcinoma, is the most common type of breast cancer. About 80% of all breast cancers are invasive ductal carcinomas. Invasive means that the cancer has “invaded” or spread to the surrounding breast tissues.
 ![](dcis.jpg)
 
+## HER-2 positive
+
+HER2-positive breast cancer is a breast cancer that tests positive for a protein called human epidermal growth factor receptor 2 (HER2). This protein promotes the growth of cancer cells.
+
+In about 1 of every 5 breast cancers, the cancer cells have extra copies of the gene that makes the HER2 protein. HER2-positive breast cancers tend to be more aggressive than other types of breast cancer.
+
+Treatments that specifically target HER2 are very effective. These treatments are so effective that the prognosis for HER2-positive breast cancer is actually quite good.
+
+Certain standard chemotherapy drugs also can be effective in treating HER2-positive breast cancers, although these drugs don't specifically target the HER2 protein.
+
 ## Labroista
 ### Ca15-3
 Cancer antigen 15-3 (CA15-3) is a protein made by a variety of cells, particularly breast cancer cells. The protein moves into the blood, where it can be measured.
