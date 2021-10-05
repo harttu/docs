@@ -47,7 +47,14 @@ You can test positive for ER, PR, or both. Either way, it means that hormones fu
 
 It’s also possible to test negative for both hormone receptors. If that’s the case, hormones do not fuel your breast cancer, so hormone therapy wouldn’t be effective.
 
+## Metastaasitermejä
 
+etäpesäke,
+nodulaarinen, 
+metastaasi,
+etäispesäke,
+tuumori,
+pesäke
 
 ## Labroista
 ### Ca15-3
