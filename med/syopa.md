@@ -29,23 +29,17 @@ Invasive ductal carcinoma (IDC), sometimes called infiltrating ductal carcinoma,
 ![](dcis.jpg)
 
 ## HER-2 positive
-
-HER2-positive breast cancer is a breast cancer that tests positive for a protein called human epidermal growth factor receptor 2 (HER2). This protein promotes the growth of cancer cells.
-
-In about 1 of every 5 breast cancers, the cancer cells have extra copies of the gene that makes the HER2 protein. HER2-positive breast cancers tend to be more aggressive than other types of breast cancer.
-
-Treatments that specifically target HER2 are very effective. These treatments are so effective that the prognosis for HER2-positive breast cancer is actually quite good.
-
-Certain standard chemotherapy drugs also can be effective in treating HER2-positive breast cancers, although these drugs don't specifically target the HER2 protein.
+- HER-2/neu-geeni sijaitsee kromosomiraidassa 17q21.1, ja se koodittaa solukalvolla sijaitsevaa proteiinia p185HER-2.
+- HER2 - rintasyövät aggressiivisempia kuin muut
+- HER2 - ilmaantuvuus noin 1/5 kaikista näissä syöpäsoluissa on ylimääräisiä kopioita geenistä, joka tuottaa HER2-proteiinia
+- HER2-rintasyöpään on olemassa hyviä lääkkeitä, ja syövän odotustulos on hyvä
 
 ## HR-positive
-HR is short for hormone receptor. Breast tumors are tested for both estrogen receptors (ER) and progesterone receptors (PR). Each status appears separately on your pathology report.
-
-Approximately 80 percent of breast cancers test positive for ER. About 65 percent of those are also positive for PR.
-
-You can test positive for ER, PR, or both. Either way, it means that hormones fuel your breast cancer. It also means that your treatment can include medications that affect hormones.
-
-It’s also possible to test negative for both hormone receptors. If that’s the case, hormones do not fuel your breast cancer, so hormone therapy wouldn’t be effective.
+- HR Hormoni Reseptori
+- ER Estrogeeni Reseptori
+- PR Progestroni Reseptori
+- Rintasyövistä 80 % tuottaa positiivisen ER-tuloksen
+- Rintasyövistä 65 % tuottaa positiivisen PR-tuloksen
 
 ## Metastaasitermejä
 
