@@ -1,5 +1,8 @@
 # Syöpätermejä
 
+## Munuaissyöpä
+Yleisesti käytettyjä lääkkeitä: C64.88 (sunitinibi, patsopanibi, aksitinibi, sorafenibi, kabotsantinibi, everolimuusi, nivolumabi, ipilimumabi)
+
 ## Gradus - asteikko
 https://www.suomalaineneturauhassyopa.fi/diagnostiikka/luokittelu/histologinen-luokitus/
 
