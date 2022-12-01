@@ -1,0 +1,85 @@
+# Propensity Score Matching
+## A demo from https://www.youtube.com/watch?v=ACVyPp1Fy6Y
+
+```{r }
+
+library(tibble)
+
+# NGO has built 
+# T for treatment variable, villages that got the clinic
+# imrate, infant mortality rate
+treatment_data <- tribble(
+~index,  ~T, ~imrate, ~povrate, ~pcdocs,
+      1,  1,      10,   0.5,       0.01,
+      2,  1,      15,   0.6,       0.02,
+      3,  1,      22,   0.7,       0.01,
+      4,  1,      19,   0.6,       0.02,
+  #
+      5,  0,      25,   0.6,       0.01,
+      6,  0,      19,   0.5,       0.02,
+      7,  0,       4,   0.1,       0.04,
+      8,  0,       8,   0.3,       0.05,
+      9,  0,       6,   0.2,       0.04
+)
+
+```
+
+simply compare, imrates, but goes wrong since
+villages who got the clinics most likely had it worse before,
+and thus were chosen to have the clinics
+
+```{r }
+0.25 * ( 10 + 15 + 22 + 19 ) - 0.2 * ( 25 + 19 + 4 + 8 + 6 )
+```
+## How silimar are the treatment and control groups?
+
+The basic idea:
+1. Create a new control group:
+   For each observation in the treatment group,
+   select the control observation that looks most like it based on the selection
+   variables ( aka background characteristcs )
+                                                
+2. Compute the treatement effect:
+   Compare the average outcome in the treatment group with the average outcome 
+   in the new control group
+
+```{r }
+
+mylogit <- glm( T ~ povrate + pcdocs, data = treatment_data )
+mylogits
+mylogit$fitted.values
+
+logit_intercept <- -0.1219
+logit_povrate <- 1.4496
+logit_pcdocs <- -3.8486
+
+mylogit <- glm( T ~ povrate + pcdocs, data = treatment_data, family = "binomial")
+mylogit
+mylogit$fitted.values
+
+logit_intercept <- -7.498
+logit_povrate <- 14.5
+logit_pcdocs <- -8.88
+
+treatment_data %>% 
+  mutate( t = povrate * logit_povrate + pcdocs * logit_pcdocs + logit_intercept,
+          p = 1 / ( 1 + exp(1) ^ -t ) )
+```
+So rows for a good match:
+rows 1 and 6
+and 
+rows 2,3,4 and 
+
+```{r }
+.25 * (10 + 15 + 22 + 19 ) - .25 * ( 19 + 25 + 25 + 25 )
+```
+So indeed the infrant mortality rate. 
+
+# How do we knw how well matching worked?
+1. Look at covariate balance between the treatment and new control group
+2. Compare distributions of the propensity scores in the 
+- Treatment group
+- New control group
+3. Compare distributions of the propensity in the 
+- Treatment group
+- New control group
