@@ -38,6 +38,20 @@ Certificate:
  Exponent: int
  ```
  
+**docker-compose tiedoston muokkaus**
+```docker
+version: '2'
+services:
+ kontin_1_nimi_omassa_nimiavaruudessaan:
+  image: nginx
+  volumes:
+   - ${PWD}/ssl:/etc/ssl_host/:ro
+  ports: 
+   - 80:8080
+   - 443:8080
+```
+
+ 
 Konttiin sisäänmeno
  ```bash
  docker exec -it docker-nginx-1 /bin/sh
