@@ -1,15 +1,22 @@
+HTTPS:n lisääminen nginxiin dockerissa
+==========
+Tarvitaan SSL/TLS sertifikaatit ja jonkin verran nginx konffin muokkausta.
+
 Snakeoil - kotikutoinen varmenne
 -----------
 
-Create public and private key. 509 is name of a standard. -nodes, do not encrypt key.
+Luodaan julkinen ja yksityinen avain. 509 on standardi. -nodes vivun avulla ei käytetä enkryptausta. Muuten nginx:lle pitää syöttää salasana, jolla se osaa avata salaisen avaimen. 4 kilon avain on suositeltava.
+
 ```bash
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 3650 -nodes
 ```
-Makes 
-- cert.pem - public
-- key.pem - private, if -nodes, no encryption
+Kysyy asiakastietoja sertifikaattiin, jotka ovat vapaa ehtoisia.
 
-# Examine public key
+Tuottaa:
+- cert.pem - julkinen avain, tämän voi lähettää kenelle hyvänsä (public)
+- key.pem - salainen avain (private), -nodes-vivutta salasana suojaus, joka kysytään heti alkuun
+
+**Tarkastele avainta**
 ```bash
 openssl x509 -in key.pem -noout -text | less
 ```
@@ -31,12 +38,12 @@ Certificate:
  Exponent: int
  ```
  
- Enter the container
+Konttiin sisäänmeno
  ```bash
  docker exec -it docker-nginx-1 /bin/sh
  ```
  
- /etc/nginx/conf.d tiedosto:
+ /etc/nginx/conf.d tiedostoon seuraavanlaiset muutokset:
 ```nginx
 # HTTPS config.
 server {
