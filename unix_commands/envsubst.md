@@ -14,7 +14,6 @@ You can use envsubst to replace the placeholders in the template with their corr
 $ envsubst '$${NAME} $${AGE}' < template.txt
 ```
 This command would output the following:
-```
 __Hello, my name is John and I am 30 years old.__
 
 You can also redirect the output to a new file
