@@ -20,7 +20,7 @@ db %>%
   filter( n != 1)
   count(diagnoosi, sort = T)
 
-
+# Pihvi:
 db %>%
   head( 10 ^ 5 ) %>%
   group_by(henkilotunnus,diagnoosi) #%>%
