@@ -37,7 +37,14 @@ Certificate:
  modulO: HEX (long)
  Exponent: int
  ```
- 
+
+Tarkasta, että key ja cert toimivat yhteeb
+```bash
+openssl x509 -noout -modulus -in certificate.crt | openssl md5
+openssl rsa -noout -modulus -in private.key | openssl md5
+```
+
+
 **docker-compose tiedoston muokkaus**
 ```docker
 version: '2'
