@@ -16,7 +16,7 @@ Tuottaa:
 - cert.pem - julkinen avain, tämän voi lähettää kenelle hyvänsä (public)
 - key.pem - salainen avain (private), -nodes-vivutta salasana suojaus, joka kysytään heti alkuun
 
-**Tarkastele avainta**
+**Tarkastele sertifkaattia**
 ```bash
 openssl x509 -in key.pem -noout -text | less
 ```
@@ -38,7 +38,12 @@ Certificate:
  Exponent: int
  ```
 
-Tarkasta, että key ja cert toimivat yhteeb
+**Tarkastele avainta**
+```
+openssl rsa -noout -text -in private.key
+```
+
+**Tarkasta, että key ja cert toimivat yhteen**
 ```bash
 openssl x509 -noout -modulus -in certificate.crt | openssl md5
 openssl rsa -noout -modulus -in private.key | openssl md5
