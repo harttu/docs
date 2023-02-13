@@ -1,16 +1,16 @@
 # 2023-02-13 How to configure SSL to work in Doccano
 
 ## You need SSL certificates
-- Get them from certbot [https://certbot.eff.org/]
+- Get them from (certbot)[https://certbot.eff.org/]
 - Make your own certificates: 
 ```bash
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 3650 -nodes
 ```
 - Use defaults in /etc/ssl :
 Public certificate:
-- /etc/ssl/certs/ssl-cert-snakeoil.pem
+/etc/ssl/certs/ssl-cert-snakeoil.pem
 and private in:
-- /etc/ssl/private/ssl-cert-snakeoil.key
+/etc/ssl/private/ssl-cert-snakeoil.key
 
 ## Dockerfile
 
