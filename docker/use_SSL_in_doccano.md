@@ -18,7 +18,7 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 3
 
 ## Dockerfile
 
-Copy cert and key in folder that *can be read* without root. Copy them e.g. ~/repos/deccano/ssl.
+Copy cert and key in folder that **can be read** without root. Copy them e.g. ~/repos/doccano/ssl.
 Also changes ports options:
 
 ```docker
