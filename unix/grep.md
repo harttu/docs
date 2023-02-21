@@ -1,5 +1,11 @@
 # Search through directories
 
+Hae vain tietyistä tiedostoista
+```bash
+grep -r --include=*.{Rmd,R} 'hetukeitto' .
+```
+
+
 If you're looking for lines matching in files, my favorite command is:
 
 ```bash
