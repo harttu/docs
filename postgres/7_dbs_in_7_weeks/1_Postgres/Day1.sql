@@ -196,3 +196,59 @@ alter table venues
 add active boolean default true;
 
 select * from venues;
+
+
+-- Day 2
+select * from countries;
+
+insert into countries(country_code, country_name) 
+values ('fi','Finland');
+
+select * from cities;
+
+insert into cities(name,postal_code, country_code) 
+values ('Åbo','20000','fi');
+
+select * from venues;
+
+insert into venues(name,postal_code,country_code)
+values ('My Place','20000','fi');
+
+select * from venues;
+
+insert into events (title, starts, ends, venue_id)
+values('Moby','2012-02-06 21:00', '2012-02-06 23:00', (
+SELECT venue_id FROM venues WHERE name = 'Crystal Ballroom')
+);
+
+update events
+set venue_id = (
+SELECT venue_id FROM venues WHERE name = 'Ballroom')
+where event_id = 4 
+returning venue_id;
+
+select * from events;
+
+insert into events (title, starts, ends, venue_id)
+values('Wedding','2012-02-26 21:00', '2012-02-26 23:00', (
+SELECT venue_id FROM venues WHERE name = 'Voodoo Donuts')
+);
+
+select * from events;
+
+insert into events (title, starts, ends, venue_id)
+values
+('Dinner with Mom','2012-02-26 18:00', '2012-02-26 20:30', (
+SELECT venue_id FROM venues WHERE name = 'My Place')),
+ ('Valentine''s Day','2012-02-14 00:00', '2012-02-14 23:59', NULL);
+
+insert into events (title, starts, ends, venue_id)
+values
+ ('Valentine''s Day','2012-02-14 00:00', '2012-02-14 23:59', NULL);
+
+delete from events where event_id = 8;
+
+select * from events;
+select * from venues;
+
+select title,starts,ends,name as venue from events e left join venues v using(venue_id);
