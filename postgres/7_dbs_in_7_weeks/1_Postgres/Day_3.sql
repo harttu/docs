@@ -261,14 +261,21 @@ BEGIN
 		--	INTO tulos
 	ELSE
 		RETURN QUERY
-		SELECT title,name FROM movies NATURAL JOIN actors;
+		select title FROM movies NATURAL JOIN movies_actors NATURAL JOIN actors 
+		WHERE name ilike actor_name;--actors;
 	END IF;
 END;
 $$ LANGUAGE plpgsql	
 
-select * FROM movies NATURAL JOIN movies_actors--actors;
+select title,name FROM movies NATURAL JOIN movies_actors NATURAL JOIN actors--actors;
 
 select suosittelija(NULL,'Bruce Willis')
+
+select title,name FROM movies NATURAL JOIN movies_actors NATURAL JOIN actors WHERE name ilike 'Bruce Willis';--actors;
+
+select title,name 
+FROM movies NATURAL JOIN movies_actors NATURAL JOIN actors 
+WHERE name % 'Bruce Willis';--actors;
 
 
 CREATE FUNCTION multiply_by_two(input INTEGER)
@@ -278,12 +285,59 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+select * from actors
+select * from movies
 
+drop table movies_comments;
 
+create table movies_comments(movie_id integer, comment text,title text);
 
+-- homework2 
 
+drop PROCEDURE add_comment
 
+CREATE OR REPLACE PROCEDURE add_comment(movie_commentor text,movie_comment text,movie_title text) 
+LANGUAGE plpgsql
+AS $$
+DECLARE
+	m_id integer;
+BEGIN
+SELECT movie_id from movies where title = movie_title into m_id;
+	
+INSERT INTO movies_comments(movie_id, comment, title) 
+	VALUES (m_id, movie_comment,movie_title);
+END;
+$$ 	
 
+CALL add_comment('luke'::text, 'This Mark Hamill is so great'::text, 'Star Wars'::text);
+CALL add_comment('yoda', 'Harrison Ford is so fun', 'Star Wars');
+CALL add_comment('Prof. Venkman', 'My favourite actor is Bill Muray', 'Ghostbusters');
+CALL add_comment('Prof. Venkman', 'I love Bill Muray', 'Groundhog Day');
+CALL add_comment('Prof. Venkman', 'Bill Muray the best', 'Ghostbusters II');
+CALL add_comment('Capt. Dan', 'Amazing Tom Hanks', 'Forrest Gump');
+CALL add_comment('Capt. Dan', 'Fly me to the moon ... or not Tom Hanks', 'Apollo 13');
+CALL add_comment('Capt. Dan', 'Another great performance for Tom Hanks', 'Saving Private Ryan');
+CALL add_comment('Jenny', 'Tom Hanks is such a great actor', 'Philadelphia');
+
+select * from movies_comments
+select to_tsvector(comment),to_tsquery('english',comment),comment from movies_comments
+
+select to_tsquery('english',comment),comment from movies_comments
+
+select * , to_tsquery('english',lastname)
+
+select * , to_tsvector(comment),to_tsquery('english',lastname)
+from movies
+natural join movies_actors
+natural join
+(SELECT actor_id,substring(name from ' ([^ )]+)$') AS lastname 
+FROM (select * from actors) s1) s2
+natural join movies_comments
+--limit 1000 
+--where title ilike '%star%'
+where to_tsvector(comment) @@ to_tsquery('english',lastname)
+
+--where lastname like ')';
 
 
 
