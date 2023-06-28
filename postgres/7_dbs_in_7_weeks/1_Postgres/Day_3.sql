@@ -154,20 +154,129 @@ ORDER BY dist;
 
 SELECT * FROM movies
 
+select cube(array[0,0],array[1,1])
+
+select cube(array[-1,-1],array[1,1])
+select cube(array[1,1])
+
+select cube_enlarge('(1,2)',1,0)
+
 select cube_enlarge('(1,2)',1,2)
+
+select cube_enlarge('(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)'::cube, 5, 18);
+
+select * from movies
+
+select title,
+		genre, 
+		cube_distance(genre,'(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)') dist,
+		cube_enlarge('(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)'::cube, 5, 18) en_cube,
+		cube_enlarge('(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)'::cube, 5, 18) @> genre as totuus
+from movies 
+--where cube_enlarge('(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)'::cube, 5, 18) @> genre
+order by dist;
 
 select title, cube_distance(genre,'(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)') dist
 from movies 
 where cube_enlarge('(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)'::cube, 5, 18) @> genre
 order by dist;
 
-select  m.movie_id, m.title
-from movies m, (select genre, title from movies where title = 'Mad Max') s
-where cube_enlarge(s.genre, 5,18) @> m.gwenre
+select cube_enlarge('(0,7,0,0,0,0,0,0,0,7,0,0,0,0,10,0,0,0)'::cube, 5, 18)
+
+SELECT  m.movie_id, m.title, s.title, s.genre
+FROM movies m, (SELECT genre, title FROM movies WHERE title = 'Mad Max') s
+WHERE cube_enlarge(s.genre, 5,18) @> m.genre AND s.title <> m.title
+ORDER BY cube_distance(m.genre, s.genre)
+LIMIT 10;
+
+SELECT cube_enlarge(cube(array[1,1,1], array[2,2,2]), 1, 3);
+
+SELECT cube(array[1,1,1], array[2,2,2])
+SELECT cube(array[1,1,1], array[1,1,1])
+
+SELECT cube_enlarge(cube(array[1,1,1], array[2,2,2]), 1, 3);
+
+SELECT cube_enlarge('(1,1,1)', 1, 3);
+
+-- homework
+
+DROP FUNCTION suosittelija(text)
+
+CREATE OR REPLACE FUNCTION suosittelija(movie_name text) RETURNS text AS $$
+DECLARE
+	tulos text;
+BEGIN
+SELECT title INTO TULOS 
+FROM
+(SELECT m.title,m.genre,s.genre, s.title verrattu_title, s.isokuutio, cube_distance(m.genre,s.genre) dist 
+	FROM movies m, (SELECT title, genre,cube_enlarge( genre, 6, 18 ) as isokuutio FROM movies WHERE 
+--					title = movie_name--
+				   title = 'Halloween'
+				   ) as s
+	WHERE isokuutio @> m.genre
+	ORDER BY dist
+	LIMIT 5) s1;
+--	INTO tulos
+	RETURN tulos;
+END;
+$$ LANGUAGE plpgsql	
+
+select suosittelija('Halloween')
+
+DROP FUNCTION suosittelija(text)
+
+CREATE OR REPLACE FUNCTION suosittelija(movie_name text) RETURNS SETOF text AS $$
+BEGIN
+RETURN QUERY 
+SELECT title FROM
+(SELECT m.title,m.genre,s.genre, s.title verrattu_title, s.isokuutio, cube_distance(m.genre,s.genre) dist 
+	FROM movies m, (SELECT title, genre,cube_enlarge( genre, 6, 18 ) as isokuutio FROM movies WHERE 
+					title = movie_name--
+--				   title = 'Halloween'
+				   ) as s
+	WHERE isokuutio @> m.genre
+	ORDER BY dist
+	LIMIT 5) s1;
+--	INTO tulos
+END;
+$$ LANGUAGE plpgsql	
+
+select suosittelija('Halloween')
+
+DROP FUNCTION suosittelija(text)
+
+CREATE OR REPLACE FUNCTION suosittelija(movie_name text, actor_name text) RETURNS SETOF text AS $$
+BEGIN
+	IF actor_name IS NULL THEN
+		RETURN QUERY 
+		SELECT title FROM
+		(SELECT m.title,m.genre,s.genre, s.title verrattu_title, s.isokuutio, cube_distance(m.genre,s.genre) dist 
+			FROM movies m, (SELECT title, genre,cube_enlarge( genre, 6, 18 ) as isokuutio FROM movies WHERE 
+							title = movie_name--
+		--				   title = 'Halloween'
+						   ) as s
+			WHERE isokuutio @> m.genre
+			ORDER BY dist
+			LIMIT 5) s1;
+		--	INTO tulos
+	ELSE
+		RETURN QUERY
+		SELECT title,name FROM movies NATURAL JOIN actors;
+	END IF;
+END;
+$$ LANGUAGE plpgsql	
+
+select * FROM movies NATURAL JOIN movies_actors--actors;
+
+select suosittelija(NULL,'Bruce Willis')
 
 
-
-
+CREATE FUNCTION multiply_by_two(input INTEGER)
+RETURNS INTEGER AS $$
+BEGIN
+    RETURN input * 2;
+END;
+$$ LANGUAGE plpgsql;
 
 
 
