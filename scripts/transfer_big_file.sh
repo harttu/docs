@@ -1,27 +1,31 @@
 #!/bin/bash
-
-# Transfer big files with swift 
-# Use dd to trasfer them in 1 Gb chunks
-# in the server side, use cat $FILE_PART* > output
-# to remake the file
-
 #set -x
-readonly FILE="/mnt/.../big_file"
+readonly FILE="/../bigfile"
+#readonly FILE="/home/harttu/iso_temppi_file.txt"
 readonly FILE_PART=${FILE##*/}
 
-local OS_AUTH_URL="https://url.com:5001/v3"
-local OS_AUTH_VERSION=3
-local OS_PROJECT_NAME="project_123"
-local OS_PROJECT_DOMAIN_NAME="default"
-local OS_USERNAME="username"
+#local OS_AUTH_URL="https://url.com:5001/v3"
+#local OS_AUTH_VERSION=3
+#local OS_PROJECT_NAME="project_123"
+#local OS_PROJECT_DOMAIN_NAME="default"
+#local OS_USERNAME="username"
 
-readonly CONTAINER="CONT"
+readonly CONTAINER="container_name"
 
-echo "Enter password on switf-server:"
-read -s OS_PASSWORD
+#echo "Enter password on switf-server:"
+#read -s OS_PASSWORD
 
 echo "File to be transfered is "
 echo $FILE
+
+# Create a file in HOME that stores md5 sums
+md5_sum_file="$HOME/md5_sums.txt"
+if [ -f $md5_sum_file ]; then
+  truncate -s 0 $md5_sum_file
+else
+  touch $md5_sum_file
+fi
+
 # Function f
 function_f() {
   echo "Processing $1"
@@ -33,7 +37,13 @@ function_f() {
   # Get base file name
   local file="${1##*/}"
   #echo "File: $file"
-  
+
+  local md5hash=$(md5sum "$1" | awk '{print $1}')
+
+  echo "$file $md5hash" >> $md5_sum_file
+
+  # for testing
+  #cp $file /home/user/tmp/
   swift upload $CONTAINER $file
 }
 
@@ -53,7 +63,6 @@ num_chunks_length=${#num_chunks}
 # Loop over the chunks
 for ((i=0; i<$num_chunks; i++)); do
   # Create the chunk
-
   padded_i=$(printf "%0${num_chunks_length}d" $i)
   chunk_file="$HOME/${FILE_PART}_part_${padded_i}"
 
@@ -66,3 +75,9 @@ for ((i=0; i<$num_chunks; i++)); do
   # Delete the chunk
   rm "$chunk_file"
 done
+
+# file transfer is done
+echo "All fileparts transfered"
+
+echo "Transfering mkd5 sums file"
+swift upload $CONTAINER $md5_sum_file
